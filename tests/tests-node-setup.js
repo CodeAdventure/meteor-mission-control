@@ -32,7 +32,12 @@ global.MissionControl = {
 		InjectionMapping: require('../src/MissionControl/injection/InjectionMapping').InjectionMapping,
 		Injector: require('../src/MissionControl/injection/Injector').Injector,
     MappingFactory: require('../src/MissionControl/injection/MappingFactory').MappingFactory
-	}
+	},
+
+  mediators: {
+    MediatorViewMap: require('../src/MissionControl/mediators/MediatorViewMap').MediatorViewMap,
+    MediatorViewMapping: require('../src/MissionControl/mediators/MediatorViewMapping').MediatorViewMapping
+  }
 
 };
 
