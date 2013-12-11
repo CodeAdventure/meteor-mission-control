@@ -1,6 +1,6 @@
 # Mission Control
 
-Keep your business logic testable while your app is on a meteor.
+Keep your business logic testable while your app runs on meteor.
 
 [![Build Status](https://travis-ci.org/DominikGuzei/agnostic.png?branch=master)](https://travis-ci.org/DominikGuzei/agnostic)
 

@@ -1,6 +1,6 @@
 {
   "name": "mission-control",
-  "description": "Keep your business logic testable while your app is on a meteor.",
+  "description": "Keep your business logic testable while your app runs on meteor.",
   "homepage": "https://github.com/DominikGuzei/meteor-mission-control",
   "author": "Dominik Guzei",
   "version": "0.1.0",
