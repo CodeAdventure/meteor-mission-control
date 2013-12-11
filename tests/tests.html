@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="assets/css/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="assets/javascripts/mocha.js"></script>
+    <script src="assets/javascripts/chai.js"></script>
+    <script src="assets/javascripts/sinon.js"></script>
+    <script src="assets/javascripts/sinon-chai.js"></script>
+
+    <script>mocha.setup('bdd')</script>
+
+    <script>
+      var expect = chai.expect;
+    </script>
+
+    <script src="../src/Class.js"></script>
+    <script src="../src/Interface.js"></script>
+
+    <!-- SOURCE -->
+    <script src="../src/MissionControl/injection/SingletonProvider.js"></script>
+    <script src="../src/MissionControl/injection/InjectionMapping.js"></script>
+    <script src="../src/MissionControl/injection/Injector.js"></script>
+    <script src="../src/MissionControl/injection/MappingFactory.js"></script>
+
+    <!-- UNIT TESTS -->
+    <script src="unit/MissionControl/injection/Injector.unit.js"></script>
+    <script src="unit/MissionControl/injection/SingletonProvider.unit.js"></script>
+    <script src="unit/MissionControl/injection/InjectionMapping.unit.js"></script>
+    <script src="unit/MissionControl/injection/MappingFactory.unit.js"></script>
+
+    <!-- INTEGRATION -->
+    <script src="integration/MissionControl/injection/Injector.integration.js"></script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
