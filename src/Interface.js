@@ -1,7 +1,6 @@
 (function (globalNamespace) {
   "use strict";
 
-  function defineInterfaceModule(Class) {
     /**
      * @constructor
      */
@@ -44,7 +43,7 @@
       }
 
       if(!local) {
-        Class['namespace'](path, InterfaceConstructor);
+        Class.namespace(path, InterfaceConstructor);
       }
 
       InterfaceConstructor.toString = function () { return interfaceName; };
@@ -52,24 +51,16 @@
       return InterfaceConstructor;
     };
 
-    Interface['ImplementationMissingError'] = ImplementationMissingError;
-
-    return Interface;
-  }
+  Interface.ImplementationMissingError = ImplementationMissingError;
 
   // Return as AMD module or attach to head object
   if (typeof define !== "undefined") {
-    define('Interface', ['Class'], function (Class) { return defineInterfaceModule(Class); });
-  } 
-  // expose on agnostic namespace (browser)
-  else if (typeof window !== "undefined") {
-    /** @expose */
-    globalNamespace['Interface'] = defineInterfaceModule(globalNamespace['Class']);
+    define('Interface', [], function () { return Interface; });
   }
-  // expose on agnostic namespace (node)
-  else {
-    var Class = require('./Class')['Class'];
-    globalNamespace.Interface = defineInterfaceModule(Class);
+  // expose on global namespace like window (browser) or exports (node)
+  else if (globalNamespace) {
+    /** @expose */
+    globalNamespace.Interface = Interface;
   }
 
 }(typeof define !== "undefined" || typeof window === "undefined" ? exports : window));

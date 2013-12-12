@@ -1,76 +1,48 @@
-(function (globalNamespace) {
+(function () {
   "use strict";
 
-  function defineMappingFactoryModule(Class, InjectionMapping) {
+  Class('MissionControl.injection.MappingFactory', {
 
-    return Class('MissionControl.injection.MappingFactory', {
+    _typeMappings: null,
 
-      _typeMappings: null,
+    initialize: function () {
+      this._typeMappings = {};
+    },
 
-      initialize: function() {
-        this._typeMappings = {};
-      },
+    create: function (type) {
 
-      create: function(type) {
-
-        if(this.get(type)) {
-          this._throwMappingWouldBeOverridenError(type);
-        }
-
-        var mapping = new InjectionMapping(type);
-
-        this._typeMappings[type] = mapping;
-
-        return mapping;
-      },
-
-      add: function(mapping) {
-        var type = mapping.getRequestType();
-
-        if(this.get(type)) {
-          this._throwMappingWouldBeOverridenError(type);
-        }
-
-        this._typeMappings[mapping.getRequestType()] = mapping;
-      },
-
-      get: function(type) {
-        return this._typeMappings[type];
-      },
-
-      _throwMappingWouldBeOverridenError: function(type) {
-        throw new Error(
-          'There already exists a mapping for ' + type + ', this would be overriden. ' +
-            'You have to unmap the type before mapping it again.'
-        );
+      if (this.get(type)) {
+        this._throwMappingWouldBeOverridenError(type);
       }
 
-    }, true);
+      var mapping = new MissionControl.injection.InjectionMapping(type);
 
-  }
+      this._typeMappings[type] = mapping;
 
-  var Class, InjectionMapping;
+      return mapping;
+    },
 
-  // Return as AMD module or attach to head object
-  if (typeof define !== "undefined") {
-    define('MissionControl/injection/MappingFactory', ['Class', 'InjectionMapping'], function (Class, InjectionMapping) {
-      return defineMappingFactoryModule(Class, InjectionMapping);
-    });
-  }
-  // expose on MissionControl namespace (browser)
-  else if (typeof window !== "undefined") {
-    /** @expose */
-    Class = globalNamespace['Class'],
-    InjectionMapping = globalNamespace.MissionControl.injection.InjectionMapping;
+    add: function (mapping) {
+      var type = mapping.getRequestType();
 
-    globalNamespace.MissionControl.injection.MappingFactory = defineMappingFactoryModule(Class, InjectionMapping);
-  }
-  // expose on MissionControl namespace (node)
-  else {
-    Class = require('../../../src/Class')['Class'];
-    InjectionMapping = require('../../../src/MissionControl/injection/InjectionMapping').InjectionMapping;
+      if (this.get(type)) {
+        this._throwMappingWouldBeOverridenError(type);
+      }
 
-    globalNamespace.MappingFactory = defineMappingFactoryModule(Class, InjectionMapping);
-  }
+      this._typeMappings[mapping.getRequestType()] = mapping;
+    },
 
-}(typeof define !== "undefined" || typeof window === "undefined" ? exports : window));
+    get: function (type) {
+      return this._typeMappings[type] || null;
+    },
+
+    _throwMappingWouldBeOverridenError: function (type) {
+      throw new Error(
+        'There already exists a mapping for ' + type + ', this would be overriden. ' +
+          'You have to unmap the type before mapping it again.'
+      );
+    }
+
+  });
+
+}());

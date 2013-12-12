@@ -29,14 +29,14 @@
       throw new Error('Please give your class a name. Pass "true" as last parameter to avoid global namespace pollution');
     }
 
-    SuperClass = classDefinition['Extends'] || null;
-    delete classDefinition['Extends'];
+    SuperClass = classDefinition.Extends || null;
+    delete classDefinition.Extends;
 
-    implementations = classDefinition['Implements'] || null;
-    delete classDefinition['Implements'];
+    implementations = classDefinition.Implements || null;
+    delete classDefinition.Implements;
 
-    Initialize = classDefinition['initialize'] || null;
-    delete classDefinition['initialize'];
+    Initialize = classDefinition.initialize || null;
+    delete classDefinition.initialize;
 
     if (!Initialize) {
       if (SuperClass) {
@@ -55,16 +55,16 @@
 
     applyConstructorName(ClassConstructor, classPath);
 
-    Class['inherit'](ClassConstructor, SuperClass);
+    Class.inherit(ClassConstructor, SuperClass);
 
-    Class['implement'](ClassConstructor, implementations);
+    Class.implement(ClassConstructor, implementations);
 
     applyClassNameToPrototype(ClassConstructor, classPath);
 
-    Class['extend'](ClassConstructor, classDefinition, true);
+    Class.extend(ClassConstructor, classDefinition, true);
 
     if(!local) {
-      Class['namespace'](classPath, ClassConstructor);
+      Class.namespace(classPath, ClassConstructor);
     }
 
     return ClassConstructor;
@@ -79,7 +79,7 @@
    * @param  {boolean} shouldOverride
    * @return {undefined}
    */
-  Class['augment'] = function (target, extension, shouldOverride) {
+  Class.augment = function (target, extension, shouldOverride) {
 
     var propertyName, property, targetHasProperty,
       propertyWouldNotBeOverriden, extensionIsPlainObject, className;
@@ -115,25 +115,25 @@
    *
    * @expose
    */
-  Class['extend'] = function (TargetClass, extension, shouldOverride) {
+  Class.extend = function (TargetClass, extension, shouldOverride) {
     
-    if (extension['STATIC']) {
+    if (extension.STATIC) {
 
       if(TargetClass.Super) {
         // add static properties of the super class to the class namespace
-        Class['augment'](TargetClass, TargetClass.Super['_STATIC_'], true);
+        Class.augment(TargetClass, TargetClass.Super._STATIC_, true);
       }
 
       // add static properties and methods to the class namespace
-      Class['augment'](TargetClass, extension['STATIC'], true);
+      Class.augment(TargetClass, extension.STATIC, true);
 
       // save the static definitions into special var on the class namespace
-      TargetClass['_STATIC_'] = extension['STATIC'];
-      delete extension['STATIC'];
+      TargetClass._STATIC_ = extension.STATIC;
+      delete extension.STATIC;
     }
 
     // add properties and methods to the class prototype
-    Class['augment'](TargetClass.prototype, extension, shouldOverride);
+    Class.augment(TargetClass.prototype, extension, shouldOverride);
   };
 
   /**
@@ -146,7 +146,7 @@
    * @param  {Function} SuperClass
    * @return {undefined}
    */
-  Class['inherit'] = function (SubClass, SuperClass) {
+  Class.inherit = function (SubClass, SuperClass) {
 
     if (SuperClass) {
       /** @constructor */
@@ -159,7 +159,7 @@
       /** @expose */
       SubClass.Super = SuperClass;
 
-      Class['extend'](SubClass, SuperClass, false);
+      Class.extend(SubClass, SuperClass, false);
     }
   };
 
@@ -171,7 +171,7 @@
    * @param  {Function|Array} implementations
    * @return {undefined}
    */
-  Class['implement'] = function (TargetClass, implementations) {
+  Class.implement = function (TargetClass, implementations) {
 
     if (implementations) {
       var index;
@@ -179,7 +179,7 @@
         implementations = [implementations];
       }
       for (index = 0; index < implementations.length; index += 1) {
-        Class['augment'](TargetClass.prototype, implementations[index].prototype, false);
+        Class.augment(TargetClass.prototype, implementations[index].prototype, false);
       }
     }
   };
@@ -196,9 +196,9 @@
    * @param  {Object} exposedObject
    * @return {undefined}
    */
-  Class['namespace'] = function (namespacePath, exposedObject) {
+  Class.namespace = function (namespacePath, exposedObject) {
 
-    if(typeof globalNamespace['define'] === "undefined") {
+    if(typeof globalNamespace.define === "undefined") {
       var classPathArray, className, currentNamespace, currentPathItem, index;
     
       classPathArray = namespacePath.split('.');
@@ -227,7 +227,7 @@
   // expose on global namespace like window (browser) or exports (node)
   else if (globalNamespace) {
     /** @expose */
-    globalNamespace['Class'] = Class;
+    globalNamespace.Class = Class;
   }
 
 }(typeof define !== "undefined" || typeof window === "undefined" ? exports : window));

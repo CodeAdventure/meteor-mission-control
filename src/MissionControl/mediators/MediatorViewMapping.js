@@ -1,45 +1,36 @@
-(function (globalNamespace) {
+(function () {
   "use strict";
 
-  function defineMediatorViewMappingModule(Class) {
+  Class('MissionControl.mediators.MediatorViewMapping', {
 
-    return Class('MissionControl.mediators.MediatorViewMapping', {
+    injector: null,
+    _view: null,
 
-      _view: null,
+    initialize: function (view) {
+      this._view = view;
+    },
 
-      initialize: function(view) {
-        this._view = view;
-      },
+    getView: function () {
+      return this._view;
+    },
 
-      getView: function() {
-        return this._view;
-      }
+    toMediator: function (Mediator) {
 
-    });
+      var injector = this.injector;
 
-  }
+      this._view.rendered = function() {
+        this.mediator = injector.getInstanceFor(Mediator);
+      };
 
-  // module dependencies
-  var Class;
+      this._view.destroyed = function() {
 
-  // Return as AMD module or attach to head object
-  if (typeof define !== "undefined") {
-    define('MissionControl/mediators/MediatorViewMapping', ['Class'], function (Class) {
-      return defineMediatorViewMappingModule(Class);
-    });
-  }
-  // expose on agnostic namespace (browser)
-  else if (typeof window !== "undefined") {
-    /** @expose */
-    Class = globalNamespace['Class'];
+        if(this.mediator) {
+          this.mediator.destroy();
+          this.mediator = null;
+        }
+      };
+    }
 
-    defineMediatorViewMappingModule(Class);
-  }
-  // expose as node module
-  else {
-    Class = require('../../../src/Class')['Class'];
+  });
 
-    globalNamespace.MediatorViewMapping = defineMediatorViewMappingModule(Class);
-  }
-
-}(typeof define !== "undefined" || typeof window === "undefined" ? exports : window));
+}());

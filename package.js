@@ -6,20 +6,16 @@ Package.on_use(function(api) {
 
   api.add_files(
     [
-      'src/MissionControl/Class',
-      'src/MissionControl/Interface',
-      'src/MissionControl/MissionControl',
-      'src/MissionControl/injection/SingletonProvider',
-      'src/MissionControl/injection/InjectionMapping',
-      'src/MissionControl/injection/MappingFactory',
-      'src/MissionControl/injection/Injector',
-      'src/MissionControl/mediators/MediatorViewMapping',
-      'src/MissionControl/mediators/MediatorViewMap'
+      'src/Class.js',
+      'src/Interface.js',
+      'src/MissionControl/injection/SingletonProvider.js',
+      'src/MissionControl/injection/InjectionMapping.js',
+      'src/MissionControl/injection/MappingFactory.js',
+      'src/MissionControl/injection/Injector.js',
+      'src/MissionControl/mediators/MediatorViewMapping.js',
+      'src/MissionControl/mediators/MediatorViewMap.js'
     ],
     'client'
   );
 
-  api.export('MissionControl', ['client']);
-
 });
-

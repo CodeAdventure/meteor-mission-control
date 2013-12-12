@@ -8,8 +8,8 @@
     <div id="mocha"></div>
     <script src="assets/javascripts/mocha.js"></script>
     <script src="assets/javascripts/chai.js"></script>
-    <script src="assets/javascripts/sinon.js"></script>
     <script src="assets/javascripts/sinon-chai.js"></script>
+    <script src="assets/javascripts/sinon.js"></script>
 
     <script>mocha.setup('bdd')</script>
 
@@ -25,18 +25,27 @@
     <script src="../src/MissionControl/injection/InjectionMapping.js"></script>
     <script src="../src/MissionControl/injection/Injector.js"></script>
     <script src="../src/MissionControl/injection/MappingFactory.js"></script>
+    <script src="../src/MissionControl/mediators/MediatorViewMapping.js"></script>
+    <script src="../src/MissionControl/mediators/MediatorViewMap.js"></script>
 
     <!-- UNIT TESTS -->
     <script src="unit/MissionControl/injection/Injector.unit.js"></script>
     <script src="unit/MissionControl/injection/SingletonProvider.unit.js"></script>
     <script src="unit/MissionControl/injection/InjectionMapping.unit.js"></script>
     <script src="unit/MissionControl/injection/MappingFactory.unit.js"></script>
+    <script src="unit/MissionControl/mediators/MediatorViewMapping.unit.js"></script>
 
     <!-- INTEGRATION -->
     <script src="integration/MissionControl/injection/Injector.integration.js"></script>
+    <script src="integration/MissionControl/mediators/MediatorViewMap.integration.js"></script>
 
-    <script>
-      mocha.run();
+    <!-- run mocha -->
+    <script type="text/javascript" charset="utf-8">
+        // If tests run in a real browser
+        // Can alternatively do a check on window.PHANTOMJS
+        if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+            mocha.run();
+        }
     </script>
   </body>
 </html>

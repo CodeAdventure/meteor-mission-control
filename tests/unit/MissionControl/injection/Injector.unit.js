@@ -1,119 +1,123 @@
-"use strict";
+(function(){
+  "use strict";
 
-var Injector = MissionControl.injection.Injector;
+  var Injector = MissionControl.injection.Injector;
 
-describe('MissionControl.Injector', function(){
+  describe('MissionControl.Injector', function () {
 
-  beforeEach(function() {
+    beforeEach(function () {
 
-    this.mapping = {};
-
-    this.mappingFactoryInstance = {
-      add: function() {},
-      create: function() {},
-      get: function() {}
-    };
-
-    this.mappingFactoryMock = sinon.mock(this.mappingFactoryInstance);
-
-  });
-
-  describe('#constructor', function() {
-
-    it('hands the mappings configuration over to the mapping factory', function() {
-
-      this.mappingFactoryMock.expects('add').once().withExactArgs(this.mapping);
-
-      new Injector({
-        mappings: this.mapping,
-        mappingFactory: this.mappingFactoryInstance
-      });
-
-      this.mappingFactoryMock.verify();
-
-    });
-
-  });
-
-  describe('#getMappingFor:', function() {
-
-    beforeEach(function() {
-
-      this.injector = new Injector({
-        mappingFactory: this.mappingFactoryInstance
-      });
-
-      this.searchedType = 'TestType';
-
-    });
-
-    it('asks the mapping factory for the searched type and returns it', function() {
-
-      // expectations
-      this.mappingFactoryMock.expects('get').once()
-                             .withExactArgs(this.searchedType)
-                             .returns(this.mapping);
-
-      // exercise SUT
-      var result = this.injector.getMappingFor(this.searchedType);
-
-      // verify
-      this.mappingFactoryMock.verify();
-      expect(result).to.equal(this.mapping);
-
-    });
-
-    it('throws an exception if no mapping is found for the searched type', function() {
-
-      // expectations
-      this.mappingFactoryMock.expects('get').once().returns(null);
-      
-      // exercise SUT
-      var injector = this.injector;
-      function getMappingForUnknownType() {
-        injector.getMappingFor();
-      }
-
-      // verify
-      expect(getMappingForUnknownType).to.throw(Error);
-      this.mappingFactoryMock.verify();
-
-    });
-
-  });
-
-  describe('#map:', function() {
-
-    beforeEach(function() {
+      this.mapping = {};
 
       this.mappingFactoryInstance = {
-        create: function() {}
+        add: function () {},
+        create: function () {},
+        get: function () {}
       };
 
       this.mappingFactoryMock = sinon.mock(this.mappingFactoryInstance);
 
-      this.defaultInjector = new Injector({
-        mappingFactory: this.mappingFactoryInstance
+    });
+
+    describe('#constructor', function () {
+
+      it('hands the mappings configuration over to the mapping factory', function () {
+
+        this.mappingFactoryMock.expects('add').once().withExactArgs(this.mapping);
+
+        new Injector({
+          mappings: this.mapping,
+          mappingFactory: this.mappingFactoryInstance
+        });
+
+        this.mappingFactoryMock.verify();
+
       });
 
     });
 
-    it('tells the mapping factory to create a mapping for given type and returns it', function() {
+    describe('#getMappingFor:', function () {
 
-      var type = 'TestType';
+      beforeEach(function () {
 
-      this.mappingFactoryMock.expects('create').once()
-                             .withExactArgs(type)
-                             .returns(this.mappingFactoryInstance);
+        this.injector = new Injector({
+          mappingFactory: this.mappingFactoryInstance
+        });
 
-      var result = this.defaultInjector.map(type);
+        this.searchedType = 'TestType';
 
-      this.mappingFactoryMock.verify();
+      });
 
-      expect(result).to.equal(this.mappingFactoryInstance);
+      it('asks the mapping factory for the searched type and returns it', function () {
+
+        // expectations
+        this.mappingFactoryMock.expects('get').once()
+          .withExactArgs(this.searchedType)
+          .returns(this.mapping);
+
+        // exercise SUT
+        var result = this.injector.getMappingFor(this.searchedType);
+
+        // verify
+        this.mappingFactoryMock.verify();
+        expect(result).to.equal(this.mapping);
+
+      });
+
+      it('throws an exception if no mapping is found for the searched type', function () {
+
+        // expectations
+        this.mappingFactoryMock.expects('get').once().returns(null);
+
+        // exercise SUT
+        var injector = this.injector;
+
+        function getMappingForUnknownType() {
+          injector.getMappingFor();
+        }
+
+        // verify
+        expect(getMappingForUnknownType).to.throw(Error);
+        this.mappingFactoryMock.verify();
+
+      });
+
+    });
+
+    describe('#map:', function () {
+
+      beforeEach(function () {
+
+        this.mappingFactoryInstance = {
+          create: function () {}
+        };
+
+        this.mappingFactoryMock = sinon.mock(this.mappingFactoryInstance);
+
+        this.defaultInjector = new Injector({
+          mappingFactory: this.mappingFactoryInstance
+        });
+
+      });
+
+      it('tells the mapping factory to create a mapping for given type and returns it', function () {
+
+        var type = 'TestType';
+
+        this.mappingFactoryMock.expects('create').once()
+          .withExactArgs(type)
+          .returns(this.mappingFactoryInstance);
+
+        var result = this.defaultInjector.map(type);
+
+        this.mappingFactoryMock.verify();
+
+        expect(result).to.equal(this.mappingFactoryInstance);
+
+      });
 
     });
 
   });
 
-});
+}());
