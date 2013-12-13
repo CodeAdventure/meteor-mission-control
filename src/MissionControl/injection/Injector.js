@@ -45,9 +45,7 @@
     },
 
     instantiateUnmapped: function(Type) {
-
       return new Type();
-
     },
 
     _getInstanceFor: function (neededType, requestingType, skipInjection) {
@@ -101,6 +99,12 @@
     },
 
     _typeIsDependentOn: function (dependentType, searchedDependency) {
+
+      // skip the check for named types that have no class definition
+      if(typeof(dependentType) === 'string') {
+        return false;
+      }
+
       var propertyName, dependencies = dependentType.prototype.Dependencies;
 
       if (typeof dependencies !== 'object' || searchedDependency === null) {

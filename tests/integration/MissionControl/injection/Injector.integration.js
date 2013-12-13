@@ -99,6 +99,20 @@
       expect(injectWhileDependencyIsNotMapped).to.throw(Error);
     });
 
+    it('can handle strings as request types', function() {
+
+      // SETUP
+      var requestType = "RequestTypeAsString";
+      this.injector.map(requestType).toSingleton(this.TestClass);
+
+      // ACTION
+      var instance = this.injector.getInstanceFor(requestType);
+
+      // VERIFY
+      expect(instance).to.be.an.instanceof(this.TestClass);
+
+    });
+
     describe('Use Case: map a type to a singleton,', function () {
 
       it('maps given type to a single instance of given class', function () {
