@@ -11,7 +11,7 @@
     
     ImplementationMissingError.prototype = Error.prototype;
 
-    function createExceptionThrower(interfaceName, methodName, expectedType) {
+    function createExceptionThrower(interfaceName, methodName) {
       return function() {
         var message = 'Missing implementation for <' + this + '::' + methodName + '> defined by interface ' + interfaceName;
 
@@ -35,10 +35,7 @@
       for(methodName in definition) {
 
         if(definition.hasOwnProperty(methodName)) {
-          
-          property = definition[methodName];
-
-          InterfaceConstructor.prototype[methodName] = createExceptionThrower(path, methodName, property);
+          InterfaceConstructor.prototype[methodName] = createExceptionThrower(path, methodName);
         }
       }
 
