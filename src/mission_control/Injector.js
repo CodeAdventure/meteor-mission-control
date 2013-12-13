@@ -7,16 +7,20 @@
 
     initialize: function (configuration) {
 
-      if (configuration) {
+      if (!configuration) configuration = {};
 
-        if (configuration.mappingFactory) {
-          this._mappingFactory = configuration.mappingFactory;
-        }
+      if (configuration.mappingFactory) {
+        // use mapping factory from configuration if available
+        this._mappingFactory = configuration.mappingFactory;
+      }
+      else {
+        // create default mapping factory if none is specified
+        this._mappingFactory = new MissionControl.injection.MappingFactory();
+      }
 
-        if (configuration.mappings && this._mappingFactory) {
-          this._mappingFactory.add(configuration.mappings);
-        }
-
+      if (configuration.mappings && this._mappingFactory) {
+        // add preconfigured mappings to factory
+        this._mappingFactory.add(configuration.mappings);
       }
 
     },
@@ -46,6 +50,10 @@
 
     instantiateUnmapped: function(Type) {
       return new Type();
+    },
+
+    getMappingFactory: function() {
+      return this._mappingFactory;
     },
 
     _getInstanceFor: function (neededType, requestingType, skipInjection) {

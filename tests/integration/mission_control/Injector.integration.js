@@ -23,11 +23,15 @@
         }
       }, true);
 
-      this.mappingFactory = new MappingFactory();
+      this.injector = new Injector();
+    });
 
-      this.injector = new Injector({
-        mappingFactory: this.mappingFactory
-      });
+    it('uses the default mapping factory when none is specified', function() {
+
+      var injector = new Injector();
+
+      expect(injector.getMappingFactory()).to.be.an.instanceof(MappingFactory);
+
     });
 
     it('injects multiple dependencies into given injectee', function () {

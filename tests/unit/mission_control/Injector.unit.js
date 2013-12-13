@@ -19,7 +19,7 @@
 
     });
 
-    describe('#constructor', function () {
+    describe('#initialize', function () {
 
       it('hands the mappings configuration over to the mapping factory', function () {
 
