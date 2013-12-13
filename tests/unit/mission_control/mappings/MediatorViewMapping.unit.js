@@ -3,7 +3,7 @@
 
   var MediatorViewMapping = MissionControl.mappings.MediatorViewMapping;
 
-  describe('MissionControl.mediators.MediatorViewMapping:', function () {
+  describe('MissionControl.mappings.MediatorViewMapping:', function () {
 
     beforeEach(function () {
       this.view = {};
