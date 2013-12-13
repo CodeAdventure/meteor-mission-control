@@ -1,10 +1,10 @@
 (function(){
   "use strict";
 
-  var MediatorViewMap = MissionControl.mediators.MediatorViewMap;
+  var MediatorViewMap = MissionControl.MediatorViewMap;
   var MediatorViewMapping = MissionControl.mediators.MediatorViewMapping;
 
-  describe('MissionControl.mediators.MediatorViewMap (Integration):', function () {
+  describe('MissionControl.MediatorViewMap (Integration):', function () {
 
     beforeEach(function () {
       this.injectorFake = {};
