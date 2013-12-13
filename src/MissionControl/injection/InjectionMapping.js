@@ -20,7 +20,7 @@
 
     toSingleton: function (responseType) {
       this._responseType = responseType;
-      this._dependencyProvider = new MissionControl.injection.SingletonProvider(responseType);
+      this._dependencyProvider = new MissionControl.injection.dependencyProviders.SingletonProvider(responseType);
 
       return this;
     },

@@ -3,7 +3,7 @@
   "use strict";
 
   var DependencyProvider = MissionControl.injection.dependencyProviders.DependencyProvider;
-  var SingletonProvider = MissionControl.injection.SingletonProvider;
+  var SingletonProvider = MissionControl.injection.dependencyProviders.SingletonProvider;
 
   describe('MissionControl.injection.SingletonProvider:', function () {
 

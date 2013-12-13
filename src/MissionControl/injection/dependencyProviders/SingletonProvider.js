@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  Class('MissionControl.injection.SingletonProvider', {
+  Class('MissionControl.injection.dependencyProviders.SingletonProvider', {
 
     Extends: MissionControl.injection.dependencyProviders.DependencyProvider,
 

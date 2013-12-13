@@ -5,7 +5,7 @@
 
     var InjectionMapping = MissionControl.injection.InjectionMapping;
     var ClassProvider = MissionControl.injection.dependencyProviders.ClassProvider;
-    var SingletonProvider = MissionControl.injection.SingletonProvider;
+    var SingletonProvider = MissionControl.injection.dependencyProviders.SingletonProvider;
 
     describe('#initialize', function() {
 
