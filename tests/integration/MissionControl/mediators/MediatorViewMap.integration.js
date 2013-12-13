@@ -7,7 +7,27 @@
   describe('MissionControl.Injector (Integration):', function () {
 
     beforeEach(function () {
-      this.mediatorViewMap = new MediatorViewMap();
+      this.injectorFake = {};
+      this.mediatorViewMap = new MediatorViewMap(this.injectorFake);
+    });
+
+    describe('#initialize', function() {
+
+      it('needs an injector instance for setting up mappings', function() {
+
+        function createMapWithInjectorInstance() {
+          var map = new MediatorViewMap({});
+        }
+
+        function createMapWithoutInjector() {
+          var map = new MediatorViewMap();
+        }
+
+        expect(createMapWithInjectorInstance).not.to.throw(Error);
+        expect(createMapWithoutInjector).to.throw(Error);
+
+      });
+
     });
 
     describe('#map', function () {

@@ -3,11 +3,17 @@
 
   Class('MissionControl.mediators.MediatorViewMapping', {
 
-    injector: null,
+    _injector: null,
     _view: null,
 
-    initialize: function (view) {
+    initialize: function (view, injector) {
       this._view = view;
+
+      if(injector) {
+        this._injector = injector;
+      } else {
+        throw new Error('Injector argument is required but missing.');
+      }
     },
 
     getView: function () {
@@ -16,7 +22,7 @@
 
     toMediator: function (Mediator) {
 
-      var injector = this.injector;
+      var injector = this._injector;
 
       this._view.rendered = function() {
         this.mediator = injector.getInstanceFor(Mediator);

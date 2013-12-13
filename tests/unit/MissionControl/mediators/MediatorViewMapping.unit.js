@@ -15,9 +15,21 @@
       this.injectorMock = sinon.mock(this.injectorInstance);
 
       this.Mediator = Class('Mediator', { destroy: sinon.spy() }, true);
-      this.mediatorViewMapping = new MediatorViewMapping(this.view);
+      this.mediatorViewMapping = new MediatorViewMapping(this.view, this.injectorInstance);
+    });
 
-      this.mediatorViewMapping.injector = this.injectorInstance;
+    describe('#initialize', function() {
+
+      it('throws an error if no injector is passed', function() {
+
+        function createMappingWithoutInjector() {
+          var mapping = new MediatorViewMapping({});
+        }
+
+        expect(createMappingWithoutInjector).to.throw(Error);
+
+      });
+
     });
 
     describe('#getView', function () {
