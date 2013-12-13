@@ -14,7 +14,7 @@ Package.on_use(function(api) {
       'src/mission_control/injection/InjectionMapping.js',
       'src/mission_control/injection/MappingFactory.js',
       'src/mission_control/Injector.js',
-      'src/mission_control/mediators/MediatorViewMapping.js',
+      'src/mission_control/mappings/MediatorViewMapping.js',
       'src/mission_control/MediatorViewMap.js'
     ],
     'client'

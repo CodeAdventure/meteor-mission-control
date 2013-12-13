@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var MediatorViewMapping = MissionControl.mediators.MediatorViewMapping;
+  var MediatorViewMapping = MissionControl.mappings.MediatorViewMapping;
 
   describe('MissionControl.mediators.MediatorViewMapping:', function () {
 
