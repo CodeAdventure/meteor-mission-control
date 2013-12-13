@@ -44,13 +44,19 @@
       return mapping;
     },
 
+    instantiateUnmapped: function(Type) {
+
+      return new Type();
+
+    },
+
     _getInstanceFor: function (neededType, requestingType, skipInjection) {
 
       var mapping, isCircularDependency, instance = null;
 
       mapping = this.getMappingFor(neededType);
 
-      instance = mapping.getInstance();
+      instance = mapping.getInstance(this);
       isCircularDependency = this._typeIsDependentOn(neededType, requestingType) ? true : false;
 
       if (!skipInjection) {

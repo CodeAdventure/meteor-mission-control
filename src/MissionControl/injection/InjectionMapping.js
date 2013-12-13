@@ -7,8 +7,15 @@
     _responseType: null,
     _dependencyProvider: null,
 
-    initialize: function (requestType) {
+    initialize: function (requestType, dependencyProvider) {
       this._requestType = requestType;
+
+      if(dependencyProvider) {
+        this._dependencyProvider = dependencyProvider;
+      }
+      else {
+        this._dependencyProvider = new MissionControl.injection.dependencyProviders.ClassProvider(requestType);
+      }
     },
 
     toSingleton: function (responseType) {
@@ -34,8 +41,8 @@
       return this._requestType;
     },
 
-    getInstance: function () {
-      return this._dependencyProvider.provideInstance();
+    getInstance: function (injector) {
+      return this._dependencyProvider.provideInstance(injector);
     }
 
   });

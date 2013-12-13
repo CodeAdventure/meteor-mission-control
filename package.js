@@ -8,6 +8,8 @@ Package.on_use(function(api) {
     [
       'src/Class.js',
       'src/Interface.js',
+      'src/MissionControl/injection/dependencyProviders/DependencyProvider.js',
+      'src/MissionControl/injection/dependencyProviders/ClassProvider.js',
       'src/MissionControl/injection/SingletonProvider.js',
       'src/MissionControl/injection/InjectionMapping.js',
       'src/MissionControl/injection/MappingFactory.js',

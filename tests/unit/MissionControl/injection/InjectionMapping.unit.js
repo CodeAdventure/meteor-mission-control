@@ -4,54 +4,126 @@
   describe('MissionControl.injection.InjectionMapping:', function () {
 
     var InjectionMapping = MissionControl.injection.InjectionMapping;
+    var ClassProvider = MissionControl.injection.dependencyProviders.ClassProvider;
     var SingletonProvider = MissionControl.injection.SingletonProvider;
 
-    beforeEach(function () {
+    describe('#initialize', function() {
 
-      this.TestInterface = Interface('TestInterface', {}, true);
-      this.TestClass = Class('TestClass', {}, true);
+      it('uses class provider as default dependency provider', function() {
 
-      this.injectionMapping = new InjectionMapping(this.TestInterface).toSingleton(this.TestClass);
+        // ACTION
+        var injectionMapping = new InjectionMapping('Test');
 
-      this.dependencyProvider = this.injectionMapping.getProvider();
-    });
+        // VERIFY
+        expect(injectionMapping.getProvider()).to.be.an.instanceof(ClassProvider);
 
-    describe('#toSingleton', function () {
-
-      it('uses a singleton provider for the mapping', function () {
-        expect(this.dependencyProvider).to.be.instanceof(SingletonProvider);
       });
 
-      it('configures request type correctly', function () {
-        expect(this.injectionMapping.getRequestType()).to.equal(this.TestInterface);
-      });
+      it('uses dependency provider given as parameter otherwise', function() {
 
-      it('configures response type correctly', function () {
-        expect(this.injectionMapping.getResponseType()).to.equal(this.TestClass);
-      });
+        // SETUP
+        var requestType = 'Bla';
+        var dependencyProviderFake = {};
 
-      it('configures the singleton provider with the correct class', function () {
-        expect(this.dependencyProvider.getType()).to.equal(this.TestClass);
-      });
+        // ACTION
+        var injectionMapping = new InjectionMapping(requestType, dependencyProviderFake);
 
-      it('returns an instance of the response type', function () {
-        expect(this.injectionMapping.getInstance()).to.be.instanceof(this.TestClass);
+        // VERIFY
+        expect(injectionMapping.getProvider()).to.equal(dependencyProviderFake);
+
       });
 
     });
 
-    describe('#asSingleton', function () {
+    describe('#getInstance', function() {
 
-      it('returns an instance of the given class', function () {
-        var mapping = new InjectionMapping(this.TestClass).asSingleton();
+      // SETUP
+      beforeEach(function() {
 
-        expect(mapping.getInstance()).to.be.instanceof(this.TestClass);
+        this.dependencyProviderInstance = {
+          provideInstance: Function
+        };
+
+        this.dependencyProviderMock = sinon.mock(this.dependencyProviderInstance);
+        this.injectorFake = {};
+        this.classInstanceFake = {};
+
       });
 
-      it('it uses the singleton provider to map the class', function () {
-        var mapping = new InjectionMapping(this.TestClass).asSingleton();
+      it('asks its configured dependency provider for an instance and returns it', function() {
 
-        expect(mapping.getProvider()).to.be.instanceof(SingletonProvider);
+        // SETUP
+        var requestType = 'Bla';
+        var injectionMapping = new InjectionMapping(requestType, this.dependencyProviderInstance);
+
+        // EXPECTATIONS
+        this.dependencyProviderMock.expects('provideInstance').once()
+                                   .withExactArgs(this.injectorFake)
+                                   .returns(this.classInstanceFake);
+
+        // ACTION
+        var returnedInstance = injectionMapping.getInstance(this.injectorFake);
+
+        // VERIFY
+        this.dependencyProviderMock.verify();
+        expect(returnedInstance).to.equal(this.classInstanceFake);
+
+      });
+
+    });
+
+    describe('using singleton providers', function() {
+
+      beforeEach(function () {
+
+        this.TestInterface = Interface('TestInterface', {}, true);
+        this.TestClass = Class('TestClass', {}, true);
+
+        this.injectionMapping = new InjectionMapping(this.TestInterface);
+      });
+
+      describe('#toSingleton', function () {
+
+        it('configures response type correctly', function () {
+
+          // ACTION
+          this.injectionMapping.toSingleton(this.TestClass);
+
+          // VERIFY
+          expect(this.injectionMapping.getResponseType()).to.equal(this.TestClass);
+
+        });
+
+        it('configures and uses a singleton provider', function() {
+
+          // ACTION
+          this.injectionMapping.toSingleton(this.TestClass);
+
+          // VERIFY
+          var configuredDependencyProvider = this.injectionMapping.getProvider();
+
+          expect(configuredDependencyProvider).to.be.instanceof(SingletonProvider);
+          expect(configuredDependencyProvider.getType()).to.equal(this.TestClass);
+        });
+
+      });
+
+      describe('#asSingleton', function () {
+
+        it('sets up singleton provider using the request type', function () {
+
+          // SETUP
+          var injectionMapping = new InjectionMapping(this.TestClass);
+          var toSingletonSpy = sinon.spy(injectionMapping, 'toSingleton');
+
+          // ACTION
+          injectionMapping.asSingleton();
+
+          // VERIFY
+          expect(toSingletonSpy).to.have.been.calledWithExactly(this.TestClass);
+
+        });
+
       });
 
     });

@@ -4,7 +4,7 @@
   var MediatorViewMap = MissionControl.mediators.MediatorViewMap;
   var MediatorViewMapping = MissionControl.mediators.MediatorViewMapping;
 
-  describe('MissionControl.Injector (Integration):', function () {
+  describe('MissionControl.mediators.MediatorViewMap (Integration):', function () {
 
     beforeEach(function () {
       this.injectorFake = {};

@@ -1,4 +1,4 @@
-(function(){
+(function () {
   "use strict";
 
   var Injector = MissionControl.injection.Injector;
@@ -113,6 +113,24 @@
         this.mappingFactoryMock.verify();
 
         expect(result).to.equal(this.mappingFactoryInstance);
+
+      });
+
+    });
+
+    describe("#instantiateUnmapped", function () {
+
+      it("creates an instance of given class and returns it", function () {
+
+        // SETUP
+        var injector = new Injector(),
+            TestClass = Class('TestClass', {}, true);
+
+        // ACTION
+        var instance = injector.instantiateUnmapped(TestClass);
+
+        // VERIFY
+        expect(instance).to.be.an.instanceof(TestClass);
 
       });
 

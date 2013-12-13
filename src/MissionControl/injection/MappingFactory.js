@@ -17,7 +17,7 @@
 
       var mapping = new MissionControl.injection.InjectionMapping(type);
 
-      this._typeMappings[type] = mapping;
+      this._typeMappings[type.toString()] = mapping;
 
       return mapping;
     },
