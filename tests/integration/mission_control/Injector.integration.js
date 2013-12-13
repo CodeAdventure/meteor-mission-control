@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  var Injector = MissionControl.injection.Injector;
+  var Injector = MissionControl.Injector;
   var MappingFactory = MissionControl.injection.MappingFactory;
 
   describe('MissionControl.Injector (Integration):', function () {

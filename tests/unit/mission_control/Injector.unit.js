@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var Injector = MissionControl.injection.Injector;
+  var Injector = MissionControl.Injector;
 
   describe('MissionControl.Injector', function () {
 

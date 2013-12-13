@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  Class('MissionControl.injection.Injector', {
+  Class('MissionControl.Injector', {
 
     _mappingFactory: null,
 

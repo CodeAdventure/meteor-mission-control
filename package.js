@@ -13,7 +13,7 @@ Package.on_use(function(api) {
       'src/mission_control/injection/dependency_providers/SingletonProvider.js',
       'src/mission_control/injection/InjectionMapping.js',
       'src/mission_control/injection/MappingFactory.js',
-      'src/mission_control/injection/Injector.js',
+      'src/mission_control/Injector.js',
       'src/mission_control/mediators/MediatorViewMapping.js',
       'src/mission_control/mediators/MediatorViewMap.js'
     ],
