@@ -6,6 +6,7 @@
     var InjectionMapping = MissionControl.injection.InjectionMapping;
     var ClassProvider = MissionControl.injection.dependencyProviders.ClassProvider;
     var SingletonProvider = MissionControl.injection.dependencyProviders.SingletonProvider;
+    var InstanceProvider = MissionControl.injection.dependencyProviders.InstanceProvider;
 
     describe('#initialize', function() {
 
@@ -121,6 +122,27 @@
 
           // VERIFY
           expect(toSingletonSpy).to.have.been.calledWithExactly(this.TestClass);
+
+        });
+
+      });
+
+      describe("#toInstance", function () {
+
+        it('sets up an instance provider with the given instance', function() {
+
+          // SETUP
+          var existingInstance = {},
+              injectionMapping = new InjectionMapping(this.TestClass);
+
+          // ACTION
+          injectionMapping.toInstance(existingInstance);
+
+          // VERIFY
+          var configuredDependencyProvider = injectionMapping.getProvider();
+
+          expect(configuredDependencyProvider).to.be.an.instanceof(InstanceProvider);
+          expect(configuredDependencyProvider.getType()).to.equal(existingInstance);
 
         });
 

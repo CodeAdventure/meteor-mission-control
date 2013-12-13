@@ -5,7 +5,7 @@
   var DependencyProvider = MissionControl.injection.dependencyProviders.DependencyProvider;
   var SingletonProvider = MissionControl.injection.dependencyProviders.SingletonProvider;
 
-  describe('MissionControl.injection.SingletonProvider:', function () {
+  describe('MissionControl.injection.dependencyProviders.SingletonProvider:', function () {
 
     it('extends DependencyProvider', function() {
       expect(SingletonProvider.Super).not.to.equal(undefined);

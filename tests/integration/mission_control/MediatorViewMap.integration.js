@@ -2,7 +2,7 @@
   "use strict";
 
   var MediatorViewMap = MissionControl.MediatorViewMap;
-  var MediatorViewMapping = MissionControl.mediators.MediatorViewMapping;
+  var MediatorViewMapping = MissionControl.mappings.MediatorViewMapping;
 
   describe('MissionControl.MediatorViewMap (Integration):', function () {
 

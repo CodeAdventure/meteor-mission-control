@@ -14,7 +14,7 @@
     },
 
     map: function (view) {
-      return new MissionControl.mediators.MediatorViewMapping(view, this._injector);
+      return new MissionControl.mappings.MediatorViewMapping(view, this._injector);
     }
 
   });

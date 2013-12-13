@@ -29,6 +29,13 @@
       return this.toSingleton(this._requestType);
     },
 
+    toInstance: function(instance) {
+      this._responseType = instance;
+      this._dependencyProvider = new MissionControl.injection.dependencyProviders.InstanceProvider(instance);
+
+      return this;
+    },
+
     getProvider: function () {
       return this._dependencyProvider;
     },

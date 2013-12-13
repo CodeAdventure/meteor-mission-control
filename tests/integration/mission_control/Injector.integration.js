@@ -159,6 +159,28 @@
 
     });
 
+    describe("Use Case: map a type to an existing instance", function () {
+
+      it("always returns the configured instance", function () {
+
+        // SETUP
+        var existingInstance = {},
+            requestType = "RequestType";
+
+        this.injector.map(requestType).toInstance(existingInstance);
+
+        // ACTION
+        var firstInstance = this.injector.getInstanceFor(requestType);
+        var secondInstance = this.injector.getInstanceFor(requestType);
+
+        // VERIFY
+        expect(firstInstance).to.equal(existingInstance);
+        expect(secondInstance).to.equal(existingInstance);
+
+      });
+
+    });
+
   });
 
 }());
