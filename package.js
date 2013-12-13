@@ -8,14 +8,14 @@ Package.on_use(function(api) {
     [
       'src/Class.js',
       'src/Interface.js',
-      'src/MissionControl/injection/dependencyProviders/DependencyProvider.js',
-      'src/MissionControl/injection/dependencyProviders/ClassProvider.js',
-      'src/MissionControl/injection/dependencyProviders/SingletonProvider.js',
-      'src/MissionControl/injection/InjectionMapping.js',
-      'src/MissionControl/injection/MappingFactory.js',
-      'src/MissionControl/injection/Injector.js',
-      'src/MissionControl/mediators/MediatorViewMapping.js',
-      'src/MissionControl/mediators/MediatorViewMap.js'
+      'src/mission_control/injection/dependency_providers/DependencyProvider.js',
+      'src/mission_control/injection/dependency_providers/ClassProvider.js',
+      'src/mission_control/injection/dependency_providers/SingletonProvider.js',
+      'src/mission_control/injection/InjectionMapping.js',
+      'src/mission_control/injection/MappingFactory.js',
+      'src/mission_control/injection/Injector.js',
+      'src/mission_control/mediators/MediatorViewMapping.js',
+      'src/mission_control/mediators/MediatorViewMap.js'
     ],
     'client'
   );
