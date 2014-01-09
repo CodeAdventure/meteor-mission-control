@@ -1,28 +1,20 @@
 Package.describe({
-  summary: 'Keep your business logic testable while your app runs on meteor.'
+  summary: 'Communication system for your application to keep it testable from earth.'
 });
 
 Package.on_use(function(api) {
 
+  api.use('mozart', ['client', 'server']);
+
   api.add_files(
     [
-      'src/vendor/signals.min.js',
-      'src/Class.js',
-      'src/Interface.js',
-      'src/mission_control/injection/dependency_providers/DependencyProvider.js',
-      'src/mission_control/injection/dependency_providers/ClassProvider.js',
-      'src/mission_control/injection/dependency_providers/SingletonProvider.js',
-      'src/mission_control/injection/dependency_providers/InstanceProvider.js',
-      'src/mission_control/injection/InjectionMapping.js',
-      'src/mission_control/injection/MappingFactory.js',
-      'src/mission_control/Injector.js',
-      'src/mission_control/mappings/MediatorViewMapping.js',
-      'src/mission_control/MediatorViewMap.js',
-      'src/mission_control/mappings/SignalCommandMapping.js',
-      'src/mission_control/SignalCommandMap.js',
-      'src/mission_control/Signal.js'
+      'source/mission_control/mappings/MediatorViewMapping.js',
+      'source/mission_control/MediatorViewMap.js',
+      'source/mission_control/mappings/SignalCommandMapping.js',
+      'source/mission_control/SignalCommandMap.js',
+      'source/mission_control/Signal.js'
     ],
-    'client'
+    ['client', 'server']
   );
 
 });

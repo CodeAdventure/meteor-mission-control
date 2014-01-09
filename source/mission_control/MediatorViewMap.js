@@ -5,7 +5,7 @@
 
     _injector: null,
 
-    initialize: function(injector) {
+    Constructor: function(injector) {
       if(injector) {
         this._injector = injector;
       } else {

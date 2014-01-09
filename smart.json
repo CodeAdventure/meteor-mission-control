@@ -1,8 +1,11 @@
 {
   "name": "mission-control",
-  "description": "Keep your business logic testable while your app runs on meteor.",
-  "homepage": "https://github.com/DominikGuzei/meteor-mission-control",
-  "author": "Dominik Guzei",
+  "description": "Communication system for your application to keep it testable from earth.",
+  "homepage": "https://github.com/CodeAdventure/meteor-mission-control",
+  "author": "Code Adventure",
   "version": "0.1.0",
-  "git": "https://github.com/DominikGuzei/meteor-mission-control.git"
+  "git": "https://github.com/CodeAdventure/meteor-mission-control.git",
+  "packages": {
+    "mozart": "0.1.9"
+  }
 }

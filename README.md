@@ -1,8 +1,6 @@
 # Mission Control
 
-Keep your business logic testable while your app runs on meteor.
-
-[![Build Status](https://travis-ci.org/DominikGuzei/agnostic.png?branch=master)](https://travis-ci.org/DominikGuzei/agnostic)
+Communication system for your application to keep it testable from earth.
 
 ## Install with Meteorite
 Install the module with: `mrt add mission-control`
@@ -20,5 +18,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2013 Dominik Guzei  
+Copyright (c) 2014 CodeAdventure
 Licensed under the MIT license.

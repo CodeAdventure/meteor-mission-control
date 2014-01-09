@@ -17,40 +17,33 @@
       var expect = chai.expect;
     </script>
 
-    <script src="../src/vendor/signals.min.js"></script>
+    <!-- DEPENDENCIES -->
+    <script src="../../js-signals/source/signals.js"></script>
 
-    <script src="../src/Class.js"></script>
-    <script src="../src/Interface.js"></script>
+    <script src="../../mozart/source/Class.js"></script>
+    <script src="../../mozart/source/Interface.js"></script>
+
+    <script src="../../dependance/source/DependencyProvider.js"></script>
+    <script src="../../dependance/source/providers/ClassProvider.js"></script>
+    <script src="../../dependance/source/providers/InstanceProvider.js"></script>
+    <script src="../../dependance/source/InjectionMapping.js"></script>
+    <script src="../../dependance/source/MappingFactory.js"></script>
+    <script src="../../dependance/source/Injector.js"></script>
 
     <!-- SOURCE -->
-    <script src="../src/mission_control/injection/dependency_providers/DependencyProvider.js"></script>
-    <script src="../src/mission_control/injection/dependency_providers/InstanceProvider.js"></script>
-    <script src="../src/mission_control/injection/dependency_providers/ClassProvider.js"></script>
-    <script src="../src/mission_control/injection/dependency_providers/SingletonProvider.js"></script>
-    <script src="../src/mission_control/injection/InjectionMapping.js"></script>
-    <script src="../src/mission_control/Injector.js"></script>
-    <script src="../src/mission_control/injection/MappingFactory.js"></script>
-    <script src="../src/mission_control/mappings/MediatorViewMapping.js"></script>
-    <script src="../src/mission_control/MediatorViewMap.js"></script>
-    <script src="../src/mission_control/mappings/SignalCommandMapping.js"></script>
-    <script src="../src/mission_control/SignalCommandMap.js"></script>
-    <script src="../src/mission_control/Signal.js"></script>
+    <script src="../source/mission_control/mappings/MediatorViewMapping.js"></script>
+    <script src="../source/mission_control/MediatorViewMap.js"></script>
+    <script src="../source/mission_control/mappings/SignalCommandMapping.js"></script>
+    <script src="../source/mission_control/SignalCommandMap.js"></script>
+    <script src="../source/mission_control/Signal.js"></script>
 
     <!-- UNIT TESTS -->
-    <script src="unit/mission_control/injection/dependency_providers/DependencyProvider.unit.js"></script>
-    <script src="unit/mission_control/injection/dependency_providers/InstanceProvider.unit.js"></script>
-    <script src="unit/mission_control/injection/dependency_providers/ClassProvider.unit.js"></script>
-    <script src="unit/mission_control/injection/dependency_providers/SingletonProvider.unit.js"></script>
-    <script src="unit/mission_control/Injector.unit.js"></script>
-    <script src="unit/mission_control/injection/InjectionMapping.unit.js"></script>
-    <script src="unit/mission_control/injection/MappingFactory.unit.js"></script>
     <script src="unit/mission_control/mappings/MediatorViewMapping.unit.js"></script>
     <script src="unit/mission_control/mappings/SignalCommandMapping.unit.js"></script>
     <script src="unit/mission_control/SignalCommandMap.unit.js"></script>
     <script src="unit/mission_control/Signal.unit.js"></script>
 
     <!-- INTEGRATION -->
-    <script src="integration/mission_control/Injector.integration.js"></script>
     <script src="integration/mission_control/MediatorViewMap.integration.js"></script>
     <script src="integration/mission_control/SignalCommandMap.integration.js"></script>
 

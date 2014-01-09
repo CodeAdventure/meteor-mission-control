@@ -6,7 +6,7 @@
     _injector: null,
     _view: null,
 
-    initialize: function (view, injector) {
+    Constructor: function (view, injector) {
       this._view = view;
 
       if(injector) {
@@ -25,7 +25,7 @@
       var injector = this._injector;
 
       this._view.rendered = function() {
-        this.mediator = injector.getInstanceFor(Mediator);
+        this.mediator = injector.get(Mediator);
       };
 
       this._view.destroyed = function() {

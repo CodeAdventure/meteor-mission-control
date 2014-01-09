@@ -13,13 +13,13 @@
         var SignalClass = "Signal",
             signalInstance = { add: Function },
             signalMock = sinon.mock(signalInstance),
-            injectorInstance = { getInstanceFor: Function },
+            injectorInstance = { get: Function },
             injectorMock = sinon.mock(injectorInstance);
 
         var mapping = new SignalCommandMapping(SignalClass, injectorInstance);
 
         // EXPECTATIONS
-        injectorMock.expects('getInstanceFor').once().withExactArgs(SignalClass).returns(signalInstance);
+        injectorMock.expects('get').once().withExactArgs(SignalClass).returns(signalInstance);
         signalMock.expects('add').once().withExactArgs(mapping.executeCommand, mapping);
 
         // ACTION
@@ -38,7 +38,7 @@
       it("executes the configured command with given data", function () {
 
         // SETUP
-        var injectorInstance = { getInstanceFor: Function },
+        var injectorInstance = { get: Function },
             injectorMock = sinon.mock(injectorInstance),
             CommandClass = "Command",
             commandInstance = { execute: Function },
@@ -48,7 +48,7 @@
         var mapping = new SignalCommandMapping("Signal", injectorInstance);
 
         // EXPECTATIONS
-        injectorMock.expects('getInstanceFor').once().withExactArgs(CommandClass).returns(commandInstance);
+        injectorMock.expects('get').once().withExactArgs(CommandClass).returns(commandInstance);
         commandMock.expects('execute').once();
 
         // ACTION

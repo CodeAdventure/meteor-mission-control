@@ -2,7 +2,7 @@
   "use strict";
 
   var SignalCommandMap = MissionControl.SignalCommandMap;
-  var Injector = MissionControl.Injector;
+  var Injector = Dependance.Injector;
 
   describe('MissionControl.SignalCommandMap (Integration)', function () {
 

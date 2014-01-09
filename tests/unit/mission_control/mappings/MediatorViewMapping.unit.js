@@ -9,7 +9,7 @@
       this.view = {};
 
       this.injectorInstance = {
-        getInstanceFor: Function
+        get: Function
       };
 
       this.injectorMock = sinon.mock(this.injectorInstance);
@@ -44,7 +44,7 @@
 
       beforeEach(function() {
 
-        this.injectorMock.expects('getInstanceFor').atLeast(1)
+        this.injectorMock.expects('get').atLeast(1)
                          .withExactArgs(this.Mediator)
                          .returns(new this.Mediator());
 
@@ -75,7 +75,7 @@
 
       it('ensures that for each rendered view a mediator is created', function () {
 
-        this.injectorMock.expects('getInstanceFor').twice()
+        this.injectorMock.expects('get').twice()
                          .withExactArgs(this.Mediator)
                          .returns(new this.Mediator());
 
