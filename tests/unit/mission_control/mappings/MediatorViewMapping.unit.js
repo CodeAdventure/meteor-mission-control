@@ -14,7 +14,11 @@
 
       this.injectorMock = sinon.mock(this.injectorInstance);
 
-      this.Mediator = Class('Mediator', { destroy: sinon.spy() }, true);
+      this.Mediator = Class('Mediator', {
+        configure: sinon.spy(),
+        destroy: sinon.spy()
+      }, true);
+
       this.mediatorViewMapping = new MediatorViewMapping(this.view, this.injectorInstance);
     });
 
@@ -44,9 +48,11 @@
 
       beforeEach(function() {
 
+        this.mediatorInstance = new this.Mediator();
+
         this.injectorMock.expects('get').atLeast(1)
                          .withExactArgs(this.Mediator)
-                         .returns(new this.Mediator());
+                         .returns(this.mediatorInstance);
 
         this.mediatorViewMapping.toMediator(this.Mediator);
       });
@@ -62,6 +68,21 @@
         this.view.rendered.call(this.view);
 
         expect(this.view.mediator).to.be.instanceof(this.Mediator);
+      });
+
+      it('provides the mediator with the view instance', function() {
+
+        this.view.rendered.call(this.view);
+
+        expect(this.mediatorInstance.view).to.equal(this.view);
+
+      });
+
+      it('tells the mediator to configure itself', function() {
+
+        this.view.rendered.call(this.view);
+
+        expect(this.Mediator.prototype.configure).to.have.been.calledOnce;
       });
 
       it('wires mediator so that it gets destroyed with the view', function () {

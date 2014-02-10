@@ -12,7 +12,8 @@ Package.on_use(function(api) {
       'source/mission_control/MediatorViewMap.js',
       'source/mission_control/mappings/SignalCommandMapping.js',
       'source/mission_control/SignalCommandMap.js',
-      'source/mission_control/Signal.js'
+      'source/mission_control/Signal.js',
+      'source/mission_control/Mediator.js'
     ],
     ['client', 'server']
   );
