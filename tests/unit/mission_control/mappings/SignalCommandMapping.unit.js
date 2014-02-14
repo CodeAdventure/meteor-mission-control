@@ -13,7 +13,10 @@
         var SignalClass = "Signal",
             signalInstance = { add: Function },
             signalMock = sinon.mock(signalInstance),
-            injectorInstance = { get: Function },
+            injectorInstance = {
+              get: Function,
+              hasMappingFor: Function
+            },
             injectorMock = sinon.mock(injectorInstance);
 
         var mapping = new SignalCommandMapping(SignalClass, injectorInstance);

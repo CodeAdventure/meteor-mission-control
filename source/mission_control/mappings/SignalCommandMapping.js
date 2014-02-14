@@ -13,7 +13,19 @@
     },
 
     toCommand: function(commandClass) {
+
       this._commandClass = commandClass;
+
+      // create mapping for signal class if it doesnt exist yet.
+      if(!this._injector.hasMappingFor(this._signalClass)) {
+        this._injector.map(this._signalClass).asSingleton();
+      }
+
+      // create mapping for command class if it doesnt exist yet.
+      if(!this._injector.hasMappingFor(commandClass)) {
+        this._injector.map(commandClass);
+      }
+
       this._injector.get(this._signalClass).add(this.executeCommand, this);
     },
 

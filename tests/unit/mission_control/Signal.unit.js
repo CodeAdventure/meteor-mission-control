@@ -5,7 +5,7 @@
 
   describe('MissionControl.Signal', function () {
 
-    describe("#add", function () {
+    describe("#getNumberOfListeners", function () {
 
       it("adds a listener to the internal collection", function () {
 

@@ -5,20 +5,38 @@
 
   describe('MissionControl.Mediator', function () {
 
-    describe("#configure", function () {
+    describe("#setup", function () {
 
-      it("is defined as no-op hook method", function () {
+      it("saves reference to template", function () {
+
+        // SETUP
+        var mediator = new Mediator(),
+            template = {};
+
+        // ACTION
+        mediator.setup(template);
+
+        // VERIFY
+        expect(mediator.template).to.equal(template);
+
+      });
+
+    });
+
+    describe("#templateDidRender", function () {
+
+      it("is defined as no-op", function () {
 
         // SETUP
         var mediator = new Mediator();
 
         // ACTION
-        function configureShouldBeDefined() {
-          mediator.configure();
+        function callingTemplateDidRender() {
+          mediator.templateDidRender();
         }
 
         // VERIFY
-        expect(configureShouldBeDefined).not.to.throw();
+        expect(callingTemplateDidRender).not.to.throw();
 
       });
 
@@ -68,17 +86,17 @@
 
       });
 
-      it('resets the view reference to null', function() {
+      it('resets the template reference to null', function() {
 
         // SETUP
         var mediator = new Mediator();
-        mediator.view = {};
+        mediator.template = {};
 
         // ACTION
         mediator.destroy();
 
         // VERIFY
-        expect(mediator.view).to.equal(null);
+        expect(mediator.template).to.equal(null);
 
       });
 

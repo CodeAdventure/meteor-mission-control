@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  Class('MissionControl.MediatorViewMap', {
+  Class('MissionControl.TemplateViewMap', {
 
     _injector: null,
 
@@ -13,8 +13,8 @@
       }
     },
 
-    map: function (view) {
-      return new MissionControl.mappings.MediatorViewMapping(view, this._injector);
+    map: function (template) {
+      return new MissionControl.mappings.TemplateMediatorMapping(template, this._injector);
     }
 
   });
