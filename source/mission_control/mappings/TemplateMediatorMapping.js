@@ -5,6 +5,7 @@
 
     _injector: null,
     _template: null,
+    _context: null,
 
     Constructor: function (template, injector) {
       this._template = template;
@@ -16,28 +17,54 @@
       }
     },
 
+    inContext: function(context) {
+
+      this._context = context;
+
+      return this;
+    },
+
     toMediator: function (MediatorClass) {
 
       var injector = this._injector;
+
+      var template = this._template,
+        context = this._context,
+        templateCreatedCallback = template.created,
+        templateRenderedFunction = template.rendered,
+        templateDestroyedFunction = template.destroyed;
 
       // create mapping for mediator class if it doesnt exist yet.
       if(!injector.hasMappingFor(MediatorClass)) {
         injector.map(MediatorClass);
       }
 
-      var template = this._template;
+      function createdCallback() {
 
-      // instantiate and setup view when template is created
-      template.created = function() {
-        this.mediator = injector.get(MediatorClass);
-        this.mediator.setup(template);
+        // call previously assigned render callbacks
+        if(templateCreatedCallback) templateCreatedCallback.apply(this, arguments);
+
+        // only assign mediator if the context is correct
+        if(!context || (context != null && this.data.as == context)) {
+
+          // assign mediator instance to template if has none yet
+          if(!this.mediator) {
+            this.mediator = this.data.mediator = injector.get(MediatorClass);
+            this.mediator.setup(this);
+          }
+        }
+
       };
 
-      template.rendered = function() {
-        this.mediator.templateDidRender();
-      };
+      // apply the created callback only once per template
+      if(template.created != createdCallback) {
+        template.created = createdCallback;
+      }
 
-      template.destroyed = function() {
+      function destroyCallback() {
+
+        // call previously assigned destroy callbacks
+        if(templateDestroyedFunction) templateDestroyedFunction.apply(this, arguments);
 
         if(this.mediator) {
           this.mediator.destroy();
@@ -45,6 +72,12 @@
         }
 
       };
+
+      // apply the destroy callback only once per template
+      if(template.destroyed != destroyCallback) {
+        template.destroyed = destroyCallback;
+      }
+
     }
 
   });

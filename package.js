@@ -4,7 +4,11 @@ Package.describe({
 
 Package.on_use(function(api) {
 
-  api.use('mozart', ['client', 'server']);
+  // on client and server
+  api.use(['deps', 'mozart'], ['client', 'server']);
+
+  // client only
+  api.use('session', ['client']);
 
   api.add_files(
     [
@@ -13,9 +17,14 @@ Package.on_use(function(api) {
       'source/mission_control/mappings/SignalCommandMapping.js',
       'source/mission_control/SignalCommandMap.js',
       'source/mission_control/Signal.js',
-      'source/mission_control/Mediator.js'
+      'source/mission_control/Mediator.js',
+      'source/mission_control/services/CollectionService.js',
+      'source/mission_control/services/SubscriptionService.js',
+      'source/mission_control/configuration/main.js'
     ],
     ['client', 'server']
   );
+
+  api.export('Injector');
 
 });

@@ -3,15 +3,17 @@
 
   Class('MissionControl.Mediator', {
 
-    template: null,
+    view: null,
 
-    setup: function(template) {
-      this.template = template;
+    setup: function(view) {
+      this.view = view;
+
+      this.setupData();
     },
 
-    templateDidRender: function(template) {
+    setupData: function() {},
 
-    },
+    viewDidRender: function() {},
 
     destroy: function() {
 
@@ -22,15 +24,14 @@
         if(dependencies.hasOwnProperty(dependencyName)) {
 
           // remove reference to dependency instance
-          this[dependencyName] = null;
+          delete this[dependencyName];
 
         }
 
       }
 
       // remove reference to the mediated view instance
-      this.template = null;
-
+      delete this.view;
     }
 
   });
