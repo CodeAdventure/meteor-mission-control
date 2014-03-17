@@ -3,17 +3,17 @@
 
   Class('MissionControl.Mediator', {
 
-    view: null,
+    template: null,
 
-    setup: function(view) {
-      this.view = view;
+    setup: function(template) {
+      this.template = template;
 
       this.setupData();
     },
 
     setupData: function() {},
 
-    viewDidRender: function() {},
+    templateDidRender: function() {},
 
     destroy: function() {
 
@@ -31,7 +31,7 @@
       }
 
       // remove reference to the mediated view instance
-      delete this.view;
+      delete this.template;
     }
 
   });

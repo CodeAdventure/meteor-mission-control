@@ -23,8 +23,8 @@
 
         var commandMock = sinon.mock(commandInstance);
 
-        injector.map(SignalClass).toInstance(signalInstance);
-        injector.map(CommandClass).toInstance(commandInstance);
+        injector.map(SignalClass).toValue(signalInstance);
+        injector.map(CommandClass).toValue(commandInstance);
 
         signalCommandMap.map(SignalClass).toCommand(CommandClass);
 

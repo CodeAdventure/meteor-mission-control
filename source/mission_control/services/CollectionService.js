@@ -11,8 +11,19 @@ Class('MissionControl.CollectionService', {
     return this._collections[name]
   },
 
-  add: function (name) {
-    return this._collections[name] = new Meteor.Collection(name);
+  add: function (name, optionalCollectionInstance) {
+
+    if(optionalCollectionInstance) {
+      
+      this._collections[name] = optionalCollectionInstance;
+
+      return optionalCollectionInstance;
+    } 
+    else {
+      return this._collections[name] = new Meteor.Collection(name);
+    }
+
+    
   }
 
 });

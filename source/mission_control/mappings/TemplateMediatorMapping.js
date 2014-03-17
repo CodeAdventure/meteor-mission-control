@@ -31,7 +31,7 @@
       var template = this._template,
         context = this._context,
         templateCreatedCallback = template.created,
-        templateRenderedFunction = template.rendered,
+        templateRenderedCallback = template.rendered,
         templateDestroyedFunction = template.destroyed;
 
       // create mapping for mediator class if it doesnt exist yet.
@@ -42,14 +42,16 @@
       function createdCallback() {
 
         // call previously assigned render callbacks
-        if(templateCreatedCallback) templateCreatedCallback.apply(this, arguments);
+        if(templateCreatedCallback) templateCreatedCallback.call(this);
 
         // only assign mediator if the context is correct
-        if(!context || (context != null && this.data.as == context)) {
+        if(!context || (context && this.data && this.data.as == context)) {
 
           // assign mediator instance to template if has none yet
           if(!this.mediator) {
-            this.mediator = this.data.mediator = injector.get(MediatorClass);
+
+            this.mediator = injector.get(MediatorClass);
+
             this.mediator.setup(this);
           }
         }
@@ -61,10 +63,26 @@
         template.created = createdCallback;
       }
 
+      function renderedCallback() {
+
+        // call previously assigned destroy callbacks
+        if(templateRenderedCallback) templateRenderedCallback.call(this);
+
+        if(this.mediator) {
+          this.mediator.templateDidRender();
+        }
+
+      };
+
+      // apply the rendered callback only once per template
+      if(template.rendered != renderedCallback) {
+        template.rendered = renderedCallback;
+      }
+
       function destroyCallback() {
 
         // call previously assigned destroy callbacks
-        if(templateDestroyedFunction) templateDestroyedFunction.apply(this, arguments);
+        if(templateDestroyedFunction) templateDestroyedFunction.call(this);
 
         if(this.mediator) {
           this.mediator.destroy();

@@ -22,7 +22,7 @@
 
       this.injectorMock = sinon.mock(this.injectorInstance);
 
-      this.mediatorViewMapping = new TemplateMediatorMapping(this.template, this.injectorInstance);
+      this.templateMediatorMapping = new TemplateMediatorMapping(this.template, this.injectorInstance);
     });
 
     describe('#initialize', function() {
@@ -49,7 +49,7 @@
                          .withExactArgs(this.Mediator)
                          .returns(this.mediatorInstance);
 
-        this.mediatorViewMapping.toMediator(this.Mediator);
+        this.templateMediatorMapping.toMediator(this.Mediator);
       });
 
       it('asks the injector for an instance of the given mediator class', function() {
@@ -85,7 +85,6 @@
       it('wires mediator so that it gets destroyed with the view', function () {
 
         this.template.created.call(this.template);
-        this.template.rendered.call(this.template);
         this.template.destroyed.call(this.template);
 
         expect(this.Mediator.prototype.destroy).to.have.been.calledOnce;

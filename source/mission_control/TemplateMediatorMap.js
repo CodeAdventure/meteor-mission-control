@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  Class('MissionControl.TemplateViewMap', {
+  Class('MissionControl.TemplateMediatorMap', {
 
     _injector: null,
 

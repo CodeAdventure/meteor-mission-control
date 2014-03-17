@@ -81,8 +81,8 @@
         mediator.destroy();
 
         // VERIFY
-        expect(mediator.first).to.equal(null);
-        expect(mediator.second).to.equal(null);
+        expect(mediator.first).to.be.undefined;
+        expect(mediator.second).to.be.undefined;
 
       });
 
