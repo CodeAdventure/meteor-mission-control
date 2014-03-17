@@ -5,7 +5,7 @@ Package.describe({
 Package.on_use(function(api) {
 
   // on client and server
-  api.use(['deps', 'mozart'], ['client', 'server']);
+  api.use(['deps', 'dependance'], ['client', 'server']);
 
   // client only
   api.use('session', ['client']);
@@ -14,7 +14,7 @@ Package.on_use(function(api) {
     'source/mission_control/mappings/TemplateMediatorMapping.js',
     'source/mission_control/TemplateMediatorMap.js',
     'source/mission_control/Mediator.js',
-    'source/mission_control/services/SubscriptionService.js',
+    'source/mission_control/services/SubscriptionService.js'
   ],
   ['client']
   );
