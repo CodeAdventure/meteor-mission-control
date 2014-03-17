@@ -5,7 +5,7 @@ Package.describe({
 Package.on_use(function(api) {
 
   // on client and server
-  api.use(['deps', 'dependance'], ['client', 'server']);
+  api.use(['deps', 'js-signals', 'dependance'], ['client', 'server']);
 
   // client only
   api.use('session', ['client']);
