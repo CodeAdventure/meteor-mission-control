@@ -45,7 +45,7 @@
         if(templateCreatedCallback) templateCreatedCallback.call(this);
 
         // only assign mediator if the context is correct
-        if(!context || (context && this.data && this.data.as == context)) {
+        if(!context || (context && this.data && this.data.context == context)) {
 
           // assign mediator instance to template if has none yet
           if(!this.mediator) {

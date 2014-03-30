@@ -1,0 +1,11 @@
+<template name="component">
+
+    {{#with chooseTemplate type}}
+
+        {{#with prepareData ../data ../as}}
+            {{> ..}}
+        {{/with}}
+
+    {{/with}}
+
+</template>
