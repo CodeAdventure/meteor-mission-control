@@ -29,11 +29,12 @@
       this._injector.get(this._signalClass).add(this.executeCommand, this);
     },
 
-    executeCommand: function(signalData) {
+    executeCommand: function(signalData, signalPromise) {
+
       var commandInstance = this._injector.get(this._commandClass);
 
       commandInstance.data = signalData;
-      commandInstance.execute();
+      commandInstance.execute(signalPromise);
     },
 
     setCommand: function(commandClass) {

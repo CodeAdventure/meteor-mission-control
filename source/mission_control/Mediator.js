@@ -8,10 +8,22 @@
     setup: function(template) {
       this.template = template;
 
-      this.setupData();
+      this.configure();
     },
 
-    setupData: function() {},
+    configure: function() {},
+
+    setupTemplateProperties: function(properties) {
+
+      for(var index = 0; index < properties.length; index++) {
+
+        var propertyName = properties[index];
+
+        this.template.__component__[propertyName] = this._createBoundTemplatePropertyHelper(propertyName);
+
+      }
+
+    },
 
     templateDidRender: function() {},
 
@@ -32,6 +44,24 @@
 
       // remove reference to the mediated view instance
       delete this.template;
+    },
+
+    onSuccess: function(method) {
+      return _.bind(method, this);
+    },
+
+    onError: function(method) {
+      return _.bind(method, this);
+    },
+
+    _createBoundTemplatePropertyHelper: function(propertyName) {
+
+      var This = this;
+
+      return function() {
+        return This[propertyName].get();
+      };
+
     }
 
   });

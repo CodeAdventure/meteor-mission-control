@@ -1,7 +1,7 @@
 {
   "name": "mission-control",
   "description": "Communication system for your application to keep it testable from earth.",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "homepage": "https://github.com/CodeAdventure/meteor-mission-control",
   "author": {
     "name": "Code Adventure",

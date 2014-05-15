@@ -46,17 +46,18 @@
             CommandClass = "Command",
             commandInstance = { execute: Function },
             commandMock = sinon.mock(commandInstance),
-            signalData = {};
+            signalData = {},
+            signalPromise = {};
 
-        var mapping = new SignalCommandMapping("Signal", injectorInstance);
+        var mapping = new SignalCommandMapping("SignalClassStub", injectorInstance);
 
         // EXPECTATIONS
         injectorMock.expects('get').once().withExactArgs(CommandClass).returns(commandInstance);
-        commandMock.expects('execute').once();
+        commandMock.expects('execute').once().withExactArgs(signalPromise);
 
         // ACTION
         mapping.setCommand(CommandClass);
-        mapping.executeCommand(signalData);
+        mapping.executeCommand(signalData, signalPromise);
 
         // VERIFY
         injectorMock.verify();

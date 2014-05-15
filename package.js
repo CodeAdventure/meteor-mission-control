@@ -8,7 +8,8 @@ Package.on_use(function(api) {
   api.use([
     'deps',
     'js-signals',
-    'dependance'
+    'dependance',
+    'underscore'
   ], ['client', 'server']);
 
   // client only
