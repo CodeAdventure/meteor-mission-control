@@ -3,10 +3,10 @@
   "description": "Communication system for your application to keep it testable from earth.",
   "homepage": "https://github.com/CodeAdventure/meteor-mission-control",
   "author": "Code Adventure",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "git": "https://github.com/CodeAdventure/meteor-mission-control.git",
   "packages": {
-    "dependance": "0.1.2",
-    "js-signals": "0.1.0"
+    "dependance": {},
+    "js-signals": {}
   }
 }
